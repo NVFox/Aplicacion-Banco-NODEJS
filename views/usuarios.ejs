@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="css/estilos.css" type="text/css">
+    <link rel="stylesheet" href="css/all.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Roboto:wght@500&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/Imagenes/favicon.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="js/actualizarusu.js"></script>
+    <script src="js/borrarusu.js"></script>
+
+</head>
+<body>
+    <% if (login) { %>
+    <header class="header">
+        <div class="menu-princ contenedor">
+            <a href="/logout" class="logout">Cerrar Sesión</a>
+            <div class="btn-menu cont">
+                <a href="#">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+            <div class="usrn">
+                <a href="/personal">
+                    <p><%= name %></p>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="text">
+        <div class="menuctx contenedor">
+            <h2><i class="fas fa-address-book"></i>Página de Usuarios</h2>
+            <p>Introduce, edita o borra los registros ya existentes</p>
+        </div>
+    </section>
+
+    <section class="form">
+        <div class="form0 contenedor">
+            <form action="/add6" method="post">
+                <div class="form1">
+                    <input type="text" name="DocCli" placeholder="Documento" class="campo" required>
+                </div>
+                <div class="form1">
+                    <input type="text" name="NomUsu" placeholder="Nombre de Usuario" class="campo" required>
+                </div>
+                <div class="form1">
+                    <input type="text" name="Clave" placeholder="Clave" class="campo" required>
+                </div>
+                <div class="form1">
+                    <input type="text" name="Rol" placeholder="Rol" class="campo" required>
+                </div>
+                <div class="form1">
+                    <input type="text" name="Estado" placeholder="Estado" class="campo" required>
+                </div>
+                <div class="form1">
+                    <input type="text" name="Imagen" placeholder="Imagen" class="campo" required>
+                </div>
+                <button type="submit" class="btn-main">
+                    Guardar Registro
+                </button>
+            </form>
+        </div>
+        <div class="tabla0">
+            <form action="" name="frm" id="frm">
+                <table class="tabla contenedor">
+                    <thead>
+                        <tr>
+                            <th>N.o</th>
+                            <th>Documento</th>
+                            <th>Nombre de Usuario</th>
+                            <th>Clave</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Imagen</th>
+                            <th>Actualizar</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (data) { %>
+                            <% for (var i = 0; i < data.length; i++) { %>
+                                <tr>
+                                    <td><%= (i + 1) %></td>
+                                    <td><input type="text" name="DocCli" value="<%= data[i].DocCli %>" class="doc"></td>
+                                    <td><input type="text" name="NomUsu" value="<%= data[i].NomUsu %>" class="nom"></td>
+                                    <td><input type="text" name="Clave" value="<%= data[i].Clave %>" class="cla"></td>
+                                    <td><input type="text" name="Rol" value="<%= data[i].Rol %>" class="rol"></td>
+                                    <td><input type="text" name="Estado" value="<%= data[i].Estado %>" class="est"></td>
+                                    <td><input type="text" name="Imagen" value="<%= data[i].Imagen %>" class="img"></td>
+                                    <td><input type="submit" name="Actualizar" value="Actualizar" id="btnact" class="btnact"></td>
+                                    <td><input type="submit" name="Borrar" value="Borrar" id="btnact" class="btneli"></td>
+                                </tr>
+                            <% } %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
+
+    <div class="cont-menu">
+        <nav>
+            <p><i class="fas fa-university"></i></p>
+            <% if (loginad) { %>
+                <a href="/usuarios">Usuarios</a>
+            <% } %>
+            <a href="/clientes">Clientes</a>
+            <a href="/lineas">Líneas de Crédito</a>
+            <a href="/creditos">Créditos</a>
+            <a href="/cuentas">Cuentas</a>
+            <a href="/operacionesemp">Operaciones</a>
+            <% if (loginad) { %>
+                <div class="copy2">
+                    <p>Oceanic Bank</p>
+                    <p>Copyright 2021</p>
+                </div>
+            <% } else { %>
+                <div class="copy">
+                    <p>Oceanic Bank</p>
+                    <p>Copyright 2021</p>
+                </div>
+            <% } %>
+        </nav>
+    </div>
+    <% } else { %>
+        <h1><strong><%= name %></strong></h1>
+        <a href="login" class="a-login">Ir al Login</a>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos personales</title>
+    <link rel="stylesheet" href="css/estilos.css" type="text/css">
+    <link rel="stylesheet" href="css/all.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Roboto:wght@500&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/Imagenes/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <% if (login || logincli) { %>
+    <header class="header">
+        <div class="menu-princ contenedor">
+            <a href="/logout" class="logout">Cerrar Sesión</a>
+            <div class="btn-menu cont">
+                <a href="#">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+            <div class="usrn">
+                <a href="/personal">
+                    <p><%= name %></p>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="text">
+        <div class="menuctx contenedor">
+            <h2><i class="fas fa-address-book"></i>Información Personal</h2>
+            <p>Consulta y actualiza tu información personal</p>
+        </div>
+    </section>
+
+    <section class="form">
+        <div class="form0 contenedor">
+            <form action="/uppersonal" method="post">
+                <div class="form1">
+                    <% if (loginad) { %>
+                        <input type="text" name="DocCli" value="<%= data[0].DocCli %>" class="campo" required>
+                    <% } else { %>
+                        <input type="text" name="DocCli" value="<%= data[0].DocCli %>" class="campo" readonly="readonly" required>
+                    <% } %>
+                </div>
+                <div class="form1">
+                    <input type="text" name="NomUsu" value="<%= data[0].NomUsu %>" class="campo" required>
+                </div>
+                <div class="form1">
+                    <input type="password" name="Clave" placeholder="Clave" class="campo" required>
+                </div>
+                <div class="form1">
+                    <input type="text" name="Rol" value="<%= data[0].Rol %>" class="campo" readonly="readonly" required>
+                </div>
+                <div class="form1">
+                    <input type="text" name="Estado" value="<%= data[0].Estado %>" class="campo" readonly="readonly" required>
+                </div>
+                <div class="form1">
+                    <input type="text" name="Imagen" value="<%= data[0].Imagen %>" class="campo" required>
+                </div>
+                <button type="submit" class="btn-main">
+                    Actualizar Registro
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <div class="cont-menu">
+        <nav>
+            <p><i class="fas fa-university"></i></p>
+            <% if (logincli) { %>
+                <a href="/lineascli">Líneas de Crédito</a>
+                <a href="/creditoscli">Créditos</a>
+                <a href="/cuentascli">Cuentas</a>
+                <a href="/operaciones">Operaciones</a>
+                <div class="copy1">
+                    <p>Oceanic Bank</p>
+                    <p>Copyright 2021</p>
+                </div>
+            <% } else if (login) { %>
+                <% if (loginad) { %>
+                    <a href="/usuarios">Usuarios</a>
+                <% } %>
+                <a href="/clientes">Clientes</a>
+                <a href="/lineas">Líneas de Crédito</a>
+                <a href="/creditos">Créditos</a>
+                <a href="/cuentas">Cuentas</a>
+                <a href="/operacionesemp">Operaciones</a>
+                <% if (loginad) { %>
+                    <div class="copy2">
+                        <p>Oceanic Bank</p>
+                        <p>Copyright 2021</p>
+                    </div>
+                <% } else { %>
+                    <div class="copy">
+                        <p>Oceanic Bank</p>
+                        <p>Copyright 2021</p>
+                    </div>
+                <% } %>
+            <% } %>
+        </nav>
+    </div>
+    <% } else { %>
+        <h1><strong><%= name %></strong></h1>
+        <a href="login" class="a-login">Ir al Login</a>
+    <% } %>
+</body>
+</html>
